@@ -1,0 +1,64 @@
+{% extends "index.html" %}
+
+{% block title %}
+<title>Contact Page</title>
+{% endblock title %}
+
+{% block slider %}
+{% endblock slider %}
+
+{% block nav_links%}
+
+<li class="nav-item">
+  <a class="nav-link " aria-current="page" href="/">Home</a>
+</li>
+
+
+<li class="nav-item">
+  <a class="nav-link" href="/contact">Contact Us</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link active active_link" href="/blogs">Blogs</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="/services">Services</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link " href="/news">Latest news</a>
+</li>
+{% endblock nav_links %}
+
+{% block body %}
+{% if blogs %}
+<div class="text-center mb-3">
+    <p>Search result for : <span class="fw-bold">{{query}}</span></p>
+</div>
+  {% for b in blogs  %}
+<div class="blogs_card m-auto">
+  <div class="complete_card mb-4">
+  <h4>
+   {{b.title}}
+  </h4>
+  <div class="date_name d-flex ">
+    <p class="italic">{{b.date}} </p>
+    <p class="mx-5 italic">{{b.author}}</p>
+  </div>
+  <div class="blogs_card_wrap row ">
+    <div class="image col-lg-6 ">
+      <img src="/{{b.img1}}" class="w-100" alt="">
+    </div>
+    <div class="blogs_content col-lg-6">
+      <p>{{b.para1}}</p>
+      <a href="/single-blog/{{b.id}}" class="btn btn-outline-info">Read More</a>
+    </div>
+  </div>
+</div>
+</div>
+{% endfor %}  
+{% else %}
+<div class="blogs_not_found text-center fst-italic">
+    <p>Result not found for : <span class="fw-bold">{{query}}</span>
+    </p>
+</div>
+{% endif %}
+{% endblock body %}

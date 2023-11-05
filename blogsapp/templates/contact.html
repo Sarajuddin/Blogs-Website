@@ -1,0 +1,98 @@
+{% extends "index.html" %}
+
+{% block title %}
+<title>Contact Page</title>
+{% endblock title %}
+
+{% block slider %}
+{% endblock slider %}
+
+{% block nav_links%}
+
+<li class="nav-item">
+  <a class="nav-link " aria-current="page" href="/">Home</a>
+</li>
+
+
+<li class="nav-item">
+  <a class="nav-link active active_link" href="/contact">Contact Us</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="/blogs">Blogs</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="/services">Services</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link " href="/news">Latest news</a>
+</li>
+{% endblock nav_links %}
+{% block body %}
+
+
+<div class="d-flex justify-content-center pb-5">
+ 
+
+
+
+
+<form action="/contact/" class="w-75" method="post" name="contactForm"  onsubmit="return validateForm()">
+  {% if messages %}
+{% for message in messages %}
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{message}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+ {% endfor %}
+  {% endif %} 
+   {% csrf_token %}
+    <label for="name">Name</label>
+    <input class="form-control" type="text" name="name" id="name" placeholder="Enter the Name" required />
+
+    <label for="email">Email</label>
+    <input class="form-control" type="email" name="email" id="email" placeholder="Enter the Email" required />
+
+    <label for="number">Mobile</label>
+    <input class="form-control" type="tel" name="phone" id="number" placeholder="Enter the Phone Number" required/>
+
+    <label for="message">Message</label>
+    <textarea name="message" id="message" cols="30" rows="6" required placeholder="Enter your message here" class="form-control">
+    </textarea>
+    <button type="submit"  class="btn btn-outline-info  px-2 mt-3">Submit</button>
+    <button type="reset" class="btn btn-outline-danger px-2 mt-3">Reset</button>
+    </form>
+</div>
+
+<!-- <script>
+  function validateForm(){
+      let name = document.forms['contactForm']['name'].value;
+      let email = document.forms['contactForm']['email'].value;
+      let phone = document.forms['contactForm']['phone'].value;
+      let message = document.forms['contactForm']['message'].value;
+
+      if (name == '' || hasNumber(name)){
+          alert('Name must be filled out and must only contain letters');
+          return false;
+      } else if (email == '' && phone == ''){
+          alert('Email or phone must be filled out');
+          return false;
+      } else if (!(email.includes('@'))){
+          alert('Email does not seem to be valid');
+          return false;
+      }else if (isNaN(phone)){
+          alert('Phone number seems to contain letters');
+          return false;
+      } else if (message == ''){
+          alert('Message must be filled out');
+          return false;
+      } else {
+          // confirm or cancel
+          return confirm('Do you really want to sent the message?')
+      }
+  }
+
+  function hasNumber(myString) {
+      return /\d/.test(myString);
+  }
+</script> -->
+{% endblock body %}
