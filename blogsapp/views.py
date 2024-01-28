@@ -34,7 +34,7 @@ def contact(request):
         Email: {}
         Phone: {}
         '''.format(form_data['name'], form_data['message'], form_data['email'],form_data['phone'])
-        send_mail('You got a mail!', message, '', ['kirtirajput63969@gmail.com','saraju.work@gmail.com'])
+        send_mail('You got a mail!', message, '', [])
         messages.success(request, "Your message has been sent ")
         return redirect("/contact")
     return render(request, "contact.html", {"page_title":"Contact Us"})
